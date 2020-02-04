@@ -60,7 +60,7 @@ class Crawler {
                 if (!hasOne) {
                     let status = db.add(this.id, result);
                     if (status !== false) {
-                        bus.newEvent(id, result);
+                        bus.newEvent(this.id, result);
                     }
                 }
             })

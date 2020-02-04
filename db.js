@@ -25,7 +25,7 @@ class DB {
         if (status) {
             return false
         }
-        const status = await setAsync(id + result.href, result.text);
+        status = await setAsync(id + result.href, result.text);
         return status;
     }
 
