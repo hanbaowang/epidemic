@@ -22,11 +22,12 @@ function taian(doc) {
 
 function yangzhou(doc) {
     const results = []
+    const prefix = 'http://wjw.yangzhou.gov.cn'
 
     doc.children('li').each((i, elem) => {
         let $a = doc.children(elem).children('a')
         results.push({
-            href: $a.attr('href'),
+            href: prefix + $a.attr('href'),
             text: $a.text()
         })
     })
