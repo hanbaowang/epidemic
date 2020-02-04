@@ -20,7 +20,7 @@
     id: 'taian', // 城市id
     url: 'http://wjw.taian.gov.cn/col/col45779/index.html', // 网站地址
     target: 'ul.main-fr-box', // 包含新闻<li>的模块
-    interval: 60 * 1000 // 间隔（暂未实现）
+    interval: 60 * 1000 // 大致间隔
 }
 ```
 
