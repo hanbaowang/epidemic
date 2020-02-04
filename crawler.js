@@ -37,7 +37,9 @@ class Crawler {
 
         this.crawl();
         setInterval(() => {
-            this.crawl();
+            setTimeout(() => {
+                this.crawl();
+            }, 50 * Math.random());
         }, this.interval);
     }
 
