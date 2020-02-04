@@ -53,14 +53,15 @@ class Crawler {
         const results = parseBy[this.id]($(this.target))
 
         let hasLastOne = await db.has(this.id, results[0])
-                    bus.newEvent(this.id, results[0]);
 
         if (!hasLastOne) {
             results.forEach(async result => {
                 let hasOne = await db.has(this.id, result)
                 if (!hasOne) {
-                    db.add(this.id, result);
-                    // bus.newEvent(this.id, result);
+                    let status = db.add(this.id, result);
+                    if (status !== false) {
+                        bus.newEvent(id, result);
+                    }
                 }
             })
         } else {

@@ -21,6 +21,10 @@ class DB {
     }
 
     async add(id, result) {
+        let status = await this.has(id, result);
+        if (status) {
+            return false
+        }
         const status = await setAsync(id + result.href, result.text);
         return status;
     }
