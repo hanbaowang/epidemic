@@ -32,7 +32,6 @@ function yangzhou(doc) {
         })
     })
 
-    console.log(results)
     return results;
 }
 

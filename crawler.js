@@ -35,6 +35,7 @@ class Crawler {
             bus.addEvent(this.id);
         }
 
+        this.crawl();
         setInterval(() => {
             this.crawl();
         }, this.interval);
@@ -50,12 +51,14 @@ class Crawler {
         const results = parseBy[this.id]($(this.target))
 
         let hasLastOne = await db.has(this.id, results[0])
+                    bus.newEvent(this.id, results[0]);
+
         if (!hasLastOne) {
             results.forEach(async result => {
                 let hasOne = await db.has(this.id, result)
                 if (!hasOne) {
                     db.add(this.id, result);
-                    bus.newEvent(this.id, result);
+                    // bus.newEvent(this.id, result);
                 }
             })
         } else {
