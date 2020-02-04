@@ -13,16 +13,26 @@ function taian(doc) {
         let $ = cheerio.load(elem);
         results.push({
             href: $('a').attr('href'),
-            test: $('a').text()
+            text: $('a').text()
+        })
+    })
+
+    return results;
+}
+
+function yangzhou(doc) {
+    const results = []
+
+    doc.children('li').each((i, elem) => {
+        let $a = doc.children(elem).children('a')
+        results.push({
+            href: $a.attr('href'),
+            text: $a.text()
         })
     })
 
     console.log(results)
     return results;
-}
-
-function yangzhou(doc) {
-    console.log(doc.html())
 }
 
 

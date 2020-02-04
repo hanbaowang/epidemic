@@ -14,4 +14,4 @@ let YZcrawler = new Crawler({
     interval: 60 * 1000
 })
 
-TAcrawler.crawl();
+YZcrawler.crawl();

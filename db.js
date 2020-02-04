@@ -15,6 +15,7 @@ class DB {
     }
 
     async has(id, lastOne) {
+        console.log(id)
         const result = await getAsync(id + lastOne.href);
         return result !== null;
     }
