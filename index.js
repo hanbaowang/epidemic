@@ -13,5 +13,3 @@ let YZcrawler = new Crawler({
     target: 'ul.item',
     interval: 60 * 1000
 })
-
-YZcrawler.crawl();

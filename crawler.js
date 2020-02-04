@@ -17,7 +17,7 @@ class Crawler {
         this.options = {
             uri: this.url,
             headers:{
-                'Host': 'wjw.yangzhou.gov.cn',
+                'Host': `wjw.${this.id}.gov.cn`,
                 'Connection': 'keep-alive',
                 'Cache-Control': 'max-age=0',
                 'Upgrade-Insecure-Requests': 1,
@@ -34,6 +34,10 @@ class Crawler {
         if (bus.getEvents().indexOf(this.id) === -1) {
             bus.addEvent(this.id);
         }
+
+        setInterval(() => {
+            this.crawl();
+        }, this.interval);
     }
 
     async crawl() {
