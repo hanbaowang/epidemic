@@ -12,7 +12,7 @@ function somebody(result) {
 
 function serverChen(url, result, filter) {
     if (filter && !filter(result)) return false
-    http.get(url + '?text=' + '有新的卫健委新闻' + '&desp=' + `标题: ${result.text}, 链接: ${result.href}`)
+    http.get(url + '?text=' + result.text + '&desp=' + `标题: ${result.text}, 链接: ${result.href}`)
     return true
 }
 
