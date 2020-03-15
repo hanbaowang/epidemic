@@ -17,10 +17,14 @@
   },
   "homepage": "https://github.com/hanbaowang/epidemic#readme",
   "dependencies": {
+    "@nestjs/common": "^6.11.11",
+    "@nestjs/core": "^6.11.11",
     "cheerio": "^1.0.0-rc.3",
     "redis": "^2.8.0",
+    "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",
-    "request-promise": "^4.2.5"
+    "request-promise": "^4.2.5",
+    "rxjs": "^6.5.4"
   },
   "devDependencies": {
     "jest": "^25.1.0"

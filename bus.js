@@ -3,7 +3,6 @@ const { pub } = require('./pub')
 
 class Bus {
     constructor() {
-        this.eventEmitter = new events.EventEmitter();
         this.events = []
     }
 
@@ -17,13 +16,11 @@ class Bus {
         return true;
     }
 
-    newEvent(id ,result) {
-        if(this.events.indexOf(id) === -1) {
+    newEvent(id, result) {
+        if (this.events.indexOf(id) === -1) {
             return false
         }
-        pub[id].forEach(subscriber => {
-            subscriber(result)
-        })
+        pub(id, result)
     }
 }
 

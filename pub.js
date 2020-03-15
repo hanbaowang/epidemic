@@ -1,13 +1,36 @@
-const http = require('http');  
+const http = require('http');
+const { db } = require('./db')
 
-function me(result) {
-    let url = 'http://YOURSERVER';
-    return serverChen(url, result)
+let me = {
+    url: 'http://YOURSERVER',
+    name: 'me',
+    service: 'taian'
 }
 
-function somebody(result) {
-    let url = 'http://HERURL';
-    return serverChen(url, result)
+let somebody = {
+    url: 'http://HERURL',
+    name: 'somebody',
+    service: 'yangzhou'
+}
+
+let fixedSubscribersFor = {
+    yangzhou: [me, somebody],
+    taian: [me]
+}
+
+async function pubFor(id, result) {
+    let DBSubscribers = await getSubscribersFor(id) || [];
+    let fixedSubscribers = fixedSubscribersFor[id] || [];
+    let subscribers = DBSubscribers.concat(fixedSubscribers);
+
+    subscribers.forEach(subscriber => {
+        serverChen(subscriber.url, result, filter.bind(this, result, subscriber.whiteList, subscriber.blackList))
+    });
+}
+
+async function getSubscribersFor(id) {
+    let subscribers = await db.getSubscribers(id);
+    return subscribers;
 }
 
 function serverChen(url, result, filter) {
@@ -23,7 +46,7 @@ function filter(result, whiteList = ["新增", "轨迹", "确诊", "治愈", "�
             return true
         }
     }
-    
+
     for (let i = 0; i < blackList.length; i++) {
         if (result.text.indexOf(blackList[i]) !== -1) {
             return false
@@ -34,10 +57,6 @@ function filter(result, whiteList = ["新增", "轨迹", "确诊", "治愈", "�
 }
 
 module.exports = {
-    pub: {
-        taian: [me],
-        yangzhou: [me, somebody]
-    },
-
-    filter: filter
+    pub: pubFor,
+    filter
 }
